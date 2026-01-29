@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useMemo } from "react";
 import { useLocalStorage } from "hooks/useLocalStorage";
 
 const TodoContext = createContext();
@@ -10,11 +10,13 @@ function TodoProvider({ children }) {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const itemsFilterSearchValue = items.filter((todo) => {
-    const todoText = todo.text.toLowerCase();
-    const searchText = searchValue.toLowerCase();
-    return todoText.includes(searchText);
-  });
+  const itemsFilterSearchValue = useMemo(() => {
+    return items.filter((todo) => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return todoText.includes(searchText);
+    });
+  }, [items, searchValue]);
 
   const totalItemsCompleted = itemsFilterSearchValue.filter((todo) => !!todo.completed).length;
   const totalItems = items.length;
