@@ -1,14 +1,18 @@
 import React, { createContext, useState, useMemo } from "react";
 import { useLocalStorage } from "hooks/useLocalStorage";
+import { useStorageListener } from "hooks/useStorageListener";
 
 const TodoContext = createContext();
 
 function TodoProvider({ children }) {
-  const { items, saveItem, loading, error } = useLocalStorage("TODOS_V1", []);
+  const { items, saveItem, loading, error, sincronize } = useLocalStorage("TODOS_V1", []);
+  
+  const { show, toggleShow } = useStorageListener(sincronize);
 
   const [searchValue, setSearchValue] = useState("");
 
   const [openModal, setOpenModal] = useState(false);
+
 
   const itemsFilterSearchValue = useMemo(() => {
     return items.filter((todo) => {
@@ -62,6 +66,8 @@ function TodoProvider({ children }) {
         deleteTodo,
         openModal,
         setOpenModal,
+        sincronize: toggleShow,
+        storageChange: show,
       }}
     >
       {children}

@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
-import { TodoContext } from "context/TodoContext";
+import React from "react";
 
-function TodoSearch() {
-  const { searchValue, setSearchValue } = useContext(TodoContext);
+function TodoSearch({ searchValue, setSearchValue, loading }) {
+  const onSearchValueChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   return (
     <input
       className="TodoSearch"
       placeholder="Buscar tarea..."
       value={searchValue}
-      onChange={(event) => {
-        setSearchValue(event.target.value);
-      }}
+      onChange={onSearchValueChange}
+      disabled={loading}
     />
   );
 }

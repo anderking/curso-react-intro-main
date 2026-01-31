@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { TodoContext } from "context/TodoContext";
+import { TodoHeader } from "components/TodoHeader";
 import { TodoCounter } from "components/TodoCounter";
 import { TodoSearch } from "components/TodoSearch";
 import { TodoList } from "components/TodoList";
@@ -10,27 +11,49 @@ import { Modal } from "components/Modal";
 import { TodoForm } from "components/TodoForm";
 
 function AppUI() {
-  const { loading, error, itemsFilterSearchValue, openModal } =
-    useContext(TodoContext);
+  const {
+    loading,
+    error,
+    totalItemsCompleted,
+    totalItems,
+    searchValue,
+    setSearchValue,
+    itemsFilterSearchValue,
+    openModal,
+    storageChange,
+    sincronize,
+  } = useContext(TodoContext);
 
   return (
     <div className="App-container">
-      <TodoCounter />
-      <TodoSearch />
+      {storageChange && (
+        <div className="ChangeAlert">
+          <p>Hubo cambios en otra pestaña</p>
+          <button onClick={sincronize}>Volver a cargar</button>
+        </div>
+      )}
+      <TodoHeader loading={loading}>
+        <TodoCounter
+          totalItemsCompleted={totalItemsCompleted}
+          totalItems={totalItems}
+        />
+        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      </TodoHeader>
 
-      <TodoList>
-        {error && <p className="status-msg">Error en los datos...</p>}
-        {loading && <TodoLoading />}
-
-        {!loading && !itemsFilterSearchValue.length && (
-          <p className="status-msg">¡Crea tu primer TODO!</p>
+      <TodoList
+        error={error}
+        loading={loading}
+        itemsFilterSearchValue={itemsFilterSearchValue}
+        totalItems={totalItems}
+        searchValue={searchValue}
+        onError={() => <p className="status-msg">Error en los datos...</p>}
+        onLoading={() => <TodoLoading />}
+        onEmptyItems={() => <p className="status-msg">¡Crea tu primer TODO!</p>}
+        onEmptySearchResults={(searchText) => (
+          <p className="status-msg">No hay resultados para {searchText}</p>
         )}
-
-        {!loading &&
-          itemsFilterSearchValue.map((todo) => (
-            <TodoItem todo={todo} key={todo.id} />
-          ))}
-      </TodoList>
+        render={(todo) => <TodoItem key={todo.id} todo={todo} />}
+      />
 
       {!!openModal && (
         <Modal>

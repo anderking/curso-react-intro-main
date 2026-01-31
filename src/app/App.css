@@ -250,3 +250,31 @@ body {
   background: var(--primary);
   color: var(--bg-dark);
 }
+
+.TodoCounter {
+  /* ... tus estilos actuales ... */
+  transition: opacity 0.3s ease;
+}
+
+/* Esta es la clase que inyectamos dinámicamente */
+.TodoCounter--loading {
+  opacity: 0.25;
+  filter: blur(1px); /* Opcional: un ligero desenfoque para dar efecto de "lejos" */
+}
+
+.TodoSearch {
+  /* ... tus estilos actuales ... */
+  transition: all 0.3s ease;
+}
+
+.TodoSearch:disabled {
+  background-color: #2c303a; /* Un tono más oscuro que el original */
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: transparent;
+}
+
+/* Podemos añadir un efecto de "shimmer" o pulso si queremos que sea pro */
+.TodoSearch:disabled::placeholder {
+  color: #4e5461;
+}
