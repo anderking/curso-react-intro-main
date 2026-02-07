@@ -23,6 +23,9 @@ En lugar de un simple texto de "Cargando", se implementó un componente `TodoLoa
 ### 5. Optimización con Composición y Render Props
 Se implementó el principio de **Inversión de Control (IoC)** para desacoplar los componentes de la lógica de negocio. Al utilizar **Composición**, componentes como el Header se volvieron agnósticos al estado, permitiendo una mayor flexibilidad. Además, mediante **Render Props/Functions**, convertimos el listado principal en un componente genérico capaz de gestionar estados de carga y error de forma centralizada, delegando el renderizado de los items específicos al componente padre.
 
+### 6. Manejo Profesional del Estado con `useReducer`
+Se evolucionó la gestión del estado mediante el hook `useReducer`, implementando un **Reducer Object** para centralizar las transiciones de los Custom Hooks. Esta arquitectura permite un flujo de datos más predecible y escalable, eliminando actualizaciones de estado desincronizadas. Al emplear **Action Creators**, se logró un código más declarativo y fácil de testear, separando las acciones del usuario de la lógica de transformación del estado.
+
 ## 🛠️ Stack Técnico
 
 * **Framework:** React 18
