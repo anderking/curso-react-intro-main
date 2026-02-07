@@ -21,7 +21,7 @@ function AppUI() {
     itemsFilterSearchValue,
     openModal,
     storageChange,
-    sincronize,
+    toggleShow,
   } = useContext(TodoContext);
 
   return (
@@ -29,7 +29,7 @@ function AppUI() {
       {storageChange && (
         <div className="ChangeAlert">
           <p>Hubo cambios en otra pestaña</p>
-          <button onClick={sincronize}>Volver a cargar</button>
+          <button onClick={toggleShow}>Volver a cargar</button>
         </div>
       )}
       <TodoHeader loading={loading}>
