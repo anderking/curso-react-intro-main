@@ -48,7 +48,6 @@ function useStorageListener(sincronize) {
 
   // --- Action Creators ---
   // Encapsulamos el 'dispatch' en funciones semánticas para mejorar la legibilidad.
-  const onChangeDetected = () => dispatch({ type: actionTypes.change });
   const onConfirmChange = () => dispatch({ type: actionTypes.confirm });
 
   useEffect(() => {
@@ -60,7 +59,8 @@ function useStorageListener(sincronize) {
       // Verificamos que el cambio pertenezca a nuestra "tabla" de TODOs.
       if (change.key === "TODOS_V1") {
         console.log("Evento Storage detectado: Sincronización requerida.");
-        onChangeDetected(); // Notificamos a la máquina de estados.
+        toggleShow()
+        //onChangeDetected(); // Notificamos a la máquina de estados.
       }
     };
 

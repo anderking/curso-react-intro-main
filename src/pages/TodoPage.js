@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import { TodoContext } from "context/TodoContext";
-import { TodoHeader } from "components/TodoHeader";
-import { TodoCounter } from "components/TodoCounter";
-import { TodoSearch } from "components/TodoSearch";
-import { TodoList } from "components/TodoList";
-import { TodoItem } from "components/TodoItem";
-import { TodoLoading } from "components/TodoLoading";
-import { TodoCreateButton } from "components/TodoCreateButton";
-import { Modal } from "components/Modal";
-import { TodoForm } from "components/TodoForm";
+import { TodoContext } from "features/todos/context/TodoContext";
+import { HeaderLayout } from "components/Layaout/HeaderLayout";
+import { TodoCounter } from "features/todos/components/TodoCounter";
+import { InputSearchUI } from "components/UI/InputSearchUI";
+import { ListContainer } from "components/UI/ListContainer";
+import { TodoItem } from "features/todos/components/TodoItem";
+import { ListSkeletonLoading } from "components/UI/ListSkeletonLoading";
+import { TodoCreateButton } from "features/todos/components/TodoCreateButton";
+import { Modal } from "components/UI/Modal";
+import { TodoForm } from "features/todos/components/TodoForm";
 
-function AppUI() {
+function TodoPage() {
   const {
     loading,
     error,
@@ -20,34 +20,26 @@ function AppUI() {
     setSearchValue,
     itemsFilterSearchValue,
     openModal,
-    storageChange,
-    toggleShow,
   } = useContext(TodoContext);
 
   return (
     <div className="App-container">
-      {storageChange && (
-        <div className="ChangeAlert">
-          <p>Hubo cambios en otra pestaña</p>
-          <button onClick={toggleShow}>Volver a cargar</button>
-        </div>
-      )}
-      <TodoHeader loading={loading}>
+      <HeaderLayout loading={loading}>
         <TodoCounter
           totalItemsCompleted={totalItemsCompleted}
           totalItems={totalItems}
         />
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      </TodoHeader>
+        <InputSearchUI searchValue={searchValue} setSearchValue={setSearchValue} />
+      </HeaderLayout>
 
-      <TodoList
+      <ListContainer
         error={error}
         loading={loading}
         itemsFilterSearchValue={itemsFilterSearchValue}
         totalItems={totalItems}
         searchValue={searchValue}
         onError={() => <p className="status-msg">Error en los datos...</p>}
-        onLoading={() => <TodoLoading />}
+        onLoading={() => <ListSkeletonLoading />}
         onEmptyItems={() => <p className="status-msg">¡Crea tu primer TODO!</p>}
         onEmptySearchResults={(searchText) => (
           <p className="status-msg">No hay resultados para {searchText}</p>
@@ -66,4 +58,4 @@ function AppUI() {
   );
 }
 
-export { AppUI };
+export { TodoPage };

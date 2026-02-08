@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodoHeader({ children, loading }) {
+function HeaderLayout({ children, loading }) {
   return (
     <header>
       {/* Iteramos sobre cada hijo y le creamos un clon al que le inyectamos la prop 'loading' */}
@@ -11,4 +11,4 @@ function TodoHeader({ children, loading }) {
   );
 }
 
-export { TodoHeader };
+export { HeaderLayout };

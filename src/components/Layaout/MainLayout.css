@@ -1,0 +1,52 @@
+.MainLayout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa toda la pantalla */
+  background-color: #121212; /* Fondo profundo */
+  color: #e0e0e0;
+}
+
+.MainLayout-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.MainLayout-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #64ffda; /* Un toque cian/verde esmeralda */
+}
+
+.MainLayout-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.MainLayout-menu li {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.MainLayout-menu li:hover {
+  color: #64ffda;
+}
+
+.MainLayout-content {
+  flex: 1; /* Esto hace que el footer siempre esté abajo si hay poco contenido */
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.MainLayout-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  font-size: 0.8rem;
+  color: #888;
+}

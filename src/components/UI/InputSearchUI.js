@@ -1,14 +1,14 @@
 import React from "react";
 
-function TodoSearch({ searchValue, setSearchValue, loading }) {
+function InputSearchUI({ searchValue, setSearchValue, loading }) {
   const onSearchValueChange = (event) => {
     setSearchValue(event.target.value);
   };
 
   return (
     <input
-      className="TodoSearch"
-      placeholder="Buscar tarea..."
+      className="InputSearchUI"
+      placeholder="Buscar..."
       value={searchValue}
       onChange={onSearchValueChange}
       disabled={loading}
@@ -16,4 +16,4 @@ function TodoSearch({ searchValue, setSearchValue, loading }) {
   );
 }
 
-export { TodoSearch };
+export { InputSearchUI };

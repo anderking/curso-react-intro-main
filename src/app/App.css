@@ -13,9 +13,7 @@ body {
   color: var(--text-main);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  display: flex;
   justify-content: center;
-  padding: 40px 20px;
 }
 
 .App-container {
@@ -37,8 +35,8 @@ body {
   font-weight: 400;
 }
 
-/* TodoSearch */
-.TodoSearch {
+/* InputSearchUI */
+.InputSearchUI {
   background: #3a3f4b;
   border: none;
   border-radius: 8px;
@@ -50,12 +48,12 @@ body {
   outline: none;
 }
 
-.TodoSearch::placeholder {
+.InputSearchUI::placeholder {
   color: var(--text-muted);
 }
 
-/* TodoList */
-.TodoList {
+/* ListContainer */
+.ListContainer {
   list-style: none;
   padding: 0;
   margin: 20px 0;
@@ -123,13 +121,13 @@ body {
   100% { opacity: 0.4; }
 }
 
-.TodoLoading-container {
+.ListSkeletonLoading-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.TodoLoading-item {
+.ListSkeletonLoading-item {
   background: #3a3f4b;
   height: 64px;
   border-radius: 8px;
@@ -140,14 +138,14 @@ body {
   gap: 12px;
 }
 
-.TodoLoading-circle {
+.ListSkeletonLoading-circle {
   width: 24px;
   height: 24px;
   border-radius: 50%;
   background: #4e5461;
 }
 
-.TodoLoading-bar {
+.ListSkeletonLoading-bar {
   flex-grow: 1;
   height: 16px;
   background: #4e5461;
@@ -262,12 +260,12 @@ body {
   filter: blur(1px); /* Opcional: un ligero desenfoque para dar efecto de "lejos" */
 }
 
-.TodoSearch {
+.InputSearchUI {
   /* ... tus estilos actuales ... */
   transition: all 0.3s ease;
 }
 
-.TodoSearch:disabled {
+.InputSearchUI:disabled {
   background-color: #2c303a; /* Un tono más oscuro que el original */
   cursor: not-allowed;
   opacity: 0.5;
@@ -275,6 +273,6 @@ body {
 }
 
 /* Podemos añadir un efecto de "shimmer" o pulso si queremos que sea pro */
-.TodoSearch:disabled::placeholder {
+.InputSearchUI:disabled::placeholder {
   color: #4e5461;
 }

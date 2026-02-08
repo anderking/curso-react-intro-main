@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TodoContext } from "context/TodoContext";
+import { TodoContext } from "features/todos/context/TodoContext";
 
 function TodoItem({ todo }) {
   const { completeTodo, deleteTodo } = useContext(TodoContext);

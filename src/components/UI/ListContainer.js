@@ -1,10 +1,10 @@
 import React from "react";
 
-function TodoList(props) {
+function ListContainer(props) {
   const renderProp = props.children || props.render;
 
   return (
-    <section className="TodoList-container">
+    <section className="ListContainer-container">
       {props.error && props.onError()}
 
       {props.loading && props.onLoading()}
@@ -22,4 +22,4 @@ function TodoList(props) {
   );
 }
 
-export { TodoList };
+export { ListContainer };
