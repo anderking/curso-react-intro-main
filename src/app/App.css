@@ -276,3 +276,214 @@ body {
 .InputSearchUI:disabled::placeholder {
   color: #4e5461;
 }
+
+.Icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.ConfirmAction {
+  background: #1e1e1e;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.ConfirmAction-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ConfirmAction-header h3 {
+  margin: 0;
+  color: #fff;
+}
+
+.ConfirmAction-description {
+  color: #aaa;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.ConfirmAction-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Botones con iconos */
+.btn-danger {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  background: #333;
+  color: #eee;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.TodoCreateButton {
+  /* ... tus estilos actuales (position fixed, border-radius 50%, etc) ... */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  border: none;
+  cursor: pointer;
+  background-color: #64ffda; /* Color principal */
+}
+
+.TodoCreateButton:hover {
+  transform: scale(1.1) rotate(90deg); /* Efecto visual pro */
+  background-color: #52d1b2;
+}
+
+.TodoForm-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espacio entre el SVG y el texto */
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Puedes usar las clases que ya tenías o estas nuevas */
+.TodoForm-button--cancel {
+  background-color: #333;
+  color: #fff;
+  border: none;
+}
+
+.TodoForm-button--add {
+  background-color: #64ffda;
+  color: #121212;
+  border: none;
+}
+
+/* Contenedor de botones para que no bailen */
+.TodoItem-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Base del botón Icon */
+.Icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px; /* Un poco de redondeo para el área de hover */
+  transition: all 0.2s ease-in-out; /* Animación suave para todo */
+}
+
+/* Efecto de Hover: Fondo sutil y agrandar un poquito */
+.Icon:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* Un brillo muy suave */
+  transform: scale(1.15);
+}
+
+/* Efecto de "Presionado": El botón se hunde */
+.Icon:active {
+  transform: scale(0.9);
+  filter: brightness(0.8);
+}
+
+/* --- Colores específicos por tipo --- */
+
+/* Check: Verde/Cian al completar */
+.Icon-check:hover {
+  filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.4));
+}
+.Icon-check--active {
+  filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.6));
+}
+
+/* Edit: Azul/Cian suave */
+.Icon-edit:hover {
+  color: #64ffda;
+  background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* Delete: Rojo vibrante */
+.Icon-delete:hover {
+  color: #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.1);
+}
+
+/* Estilos base para los botones del modal */
+.btn-confirm, .btn-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Curva de animación más natural */
+  outline: none;
+}
+
+/* Efecto de Hover general */
+.btn-confirm:hover, .btn-cancel:hover {
+  transform: translateY(-2px); /* Se eleva un poquito */
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto de Presionado (Click) - El "Hundimiento" */
+.btn-confirm:active, .btn-cancel:active {
+  transform: translateY(1px) scale(0.96); /* Se hunde y se encoge */
+  filter: brightness(0.9);
+  box-shadow: none;
+}
+
+/* Colores específicos */
+.btn-danger {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #333;
+  color: #eee;
+}
+
+/* Para que los iconos dentro del botón no se vean "feos" ni descentrados */
+.btn-confirm svg, .btn-cancel svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-confirm:hover svg {
+  transform: rotate(-10deg) scale(1.1); /* Micro-interacción en el icono */
+}

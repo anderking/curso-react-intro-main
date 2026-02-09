@@ -1,69 +1,46 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { TodoContext } from "features/todos/context/TodoContext";
+import { TodoFormUI } from "./TodoFormUI";
 
 function TodoForm() {
-  const [newTodoValue, setNewTodoValue] = useState("");
-  const { addTodo, setOpenModal } = useContext(TodoContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { addTodo, editTodo, items, loading } = useContext(TodoContext);
 
+  const [newTodoValue, setNewTodoValue] = useState("");
   const textareaRef = useRef(null);
+  const isEditMode = !!id;
 
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.focus();
+    if (isEditMode && !loading) {
+      const todoToEdit = items.find((item) => String(item.id) === String(id));
+      if (todoToEdit) setNewTodoValue(todoToEdit.text);
     }
-  }, []);
+    if (textareaRef.current) textareaRef.current.focus();
+  }, [isEditMode, id, items, loading]);
 
-  const onChange = (event) => {
-    setNewTodoValue(event.target.value);
-  };
-
-  const onCancel = () => {
-    setOpenModal(false);
-  };
-
-  const onSubmit = (event) => {
-    if (event) event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (newTodoValue.trim().length <= 0) return;
-    addTodo(newTodoValue);
-    setOpenModal(false);
-  };
 
-  const onKeyDown = (event) => {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      onSubmit();
-    }
+    if (isEditMode) editTodo(id, newTodoValue);
+    else addTodo(newTodoValue);
+
+    navigate("/todos");
   };
 
   return (
-    <form onSubmit={onSubmit} className="TodoForm">
-      <label className="TodoForm-label">Nueva tarea</label>
-      <textarea
-        ref={textareaRef}
-        className="TodoForm-textarea"
-        value={newTodoValue}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        placeholder="Ej: Terminar el módulo de React"
-        required
-      />
-      <div className="TodoForm-buttonContainer">
-        <button
-          type="button"
-          className="TodoForm-button TodoForm-button--cancel"
-          onClick={onCancel}
-        >
-          Cancelar
-        </button>
-        <button
-          type="submit"
-          className="TodoForm-button TodoForm-button--add"
-          disabled={!newTodoValue.trim()}
-        >
-          Añadir
-        </button>
-      </div>
-    </form>
+    <TodoFormUI
+      label={isEditMode ? "Editar tarea" : "Nueva tarea"}
+      placeholder="Ej: Terminar el módulo de React"
+      value={newTodoValue}
+      onChange={setNewTodoValue}
+      onCancel={() => navigate("/todos")}
+      onSubmit={handleSubmit}
+      submitText={isEditMode ? "Guardar" : "Añadir"}
+      textareaRef={textareaRef}
+    />
   );
 }
 

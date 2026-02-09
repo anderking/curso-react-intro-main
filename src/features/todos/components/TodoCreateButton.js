@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
-import { TodoContext } from "features/todos/context/TodoContext";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { AddIcon } from "components/UI/Icons/AddIcon";
 
 function TodoCreateButton() {
-  const { setOpenModal } = useContext(TodoContext);
+  const navigate = useNavigate();
+
   return (
     <button
       className="TodoCreateButton"
-      onClick={() => setOpenModal((prevState) => !prevState)}
+      onClick={() => navigate("/todos/form")}
+      title="Crear nueva tarea"
     >
-      +
+      <AddIcon color="white" />
     </button>
   );
 }

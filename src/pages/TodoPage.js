@@ -8,7 +8,7 @@ import { TodoItem } from "features/todos/components/TodoItem";
 import { ListSkeletonLoading } from "components/UI/ListSkeletonLoading";
 import { TodoCreateButton } from "features/todos/components/TodoCreateButton";
 import { Modal } from "components/UI/Modal";
-import { TodoForm } from "features/todos/components/TodoForm";
+import { ConfirmActionUI } from "components/UI/ConfirmActionUI";
 
 function TodoPage() {
   const {
@@ -19,7 +19,9 @@ function TodoPage() {
     searchValue,
     setSearchValue,
     itemsFilterSearchValue,
-    openModal,
+    todoToDelete,
+    setTodoToDelete,
+    deleteTodo,
   } = useContext(TodoContext);
 
   return (
@@ -29,7 +31,10 @@ function TodoPage() {
           totalItemsCompleted={totalItemsCompleted}
           totalItems={totalItems}
         />
-        <InputSearchUI searchValue={searchValue} setSearchValue={setSearchValue} />
+        <InputSearchUI
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
       </HeaderLayout>
 
       <ListContainer
@@ -47,11 +52,15 @@ function TodoPage() {
         render={(todo) => <TodoItem key={todo.id} todo={todo} />}
       />
 
-      {!!openModal && (
-        <Modal>
-          <TodoForm />
-        </Modal>
-      )}
+      <ConfirmActionUI
+        isOpen={!!todoToDelete}
+        title="Eliminar Tarea"
+        description={`¿Estás seguro de que quieres borrar: "${todoToDelete?.text}"?`}
+        onConfirm={() => deleteTodo(todoToDelete.id)}
+        onCancel={() => setTodoToDelete(null)}
+        confirmText="Sí, eliminar"
+        cancelText="No, cancelar"
+      />
 
       <TodoCreateButton />
     </div>
